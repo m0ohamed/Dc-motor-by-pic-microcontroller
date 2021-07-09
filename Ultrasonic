@@ -1,0 +1,51 @@
+
+#include <xc.h>
+#include "config.h"
+#define _XTAL_FREQ 4000000
+
+char calc_dist(void);
+
+void main(void) {
+
+    unsigned char dist=0;
+
+ 
+
+    TRISC2 = 0;
+    RC2 = 0;
+
+    TRISC3 = 1;
+    
+    T1CKPS0=0;
+    T1CKPS1=0;
+    
+    TMR1CS=0;
+   
+    while(1)
+    {
+        //dist = calc_dist()/5;
+        dist=calc_dist();
+        if(dist<=100){
+            //el 3rbya hn7wdha
+    }
+    }
+    return;
+}
+
+char calc_dist(void)
+{
+    unsigned char distance=0; 
+    TMR1=0;
+    RC2=1;
+    __delay_us(10);
+    RC2=0;
+    while(!RC3);
+    TMR1ON=1;
+    while(RC3);
+    TMR1ON=0;
+    distance = (TMR1/58.82); 
+    
+         return distance;
+    
+        
+}
