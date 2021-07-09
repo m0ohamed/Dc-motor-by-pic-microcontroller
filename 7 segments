@@ -1,0 +1,26 @@
+/*
+ * File:   7segments.c
+ * Author: pc
+ *
+ * Created on August 28, 2020, 4:54 AM
+ */
+
+
+#include <xc.h>
+#include "7segments config.h"
+#define _XTAL_FREQ 4000000
+void main(void) {
+    unsigned char segments[10]={0xFC,0x60,0xDA,0xF2,0x66,0xB6,0xBE,0xE0,0xFE,0xF6};
+    TRISB0=0x00;
+    RB0=0x00;
+    unsigned char counter=0;
+    while(1)
+    {
+        PORTB=segments[counter];
+        counter++;
+        __delay_ms(1000);
+        if(counter==9)
+            counter=0;
+    }
+    return;
+}
